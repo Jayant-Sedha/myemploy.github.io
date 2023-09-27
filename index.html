@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+    <style>
+        body{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main{
+            height: 60vh;
+            width: 40%;
+            padding-top: 30px;
+            padding-left: 100px;
+            background-color: lightskyblue;
+            box-sizing: border-box;
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        #ys{
+            width: 250px;
+            margin: 5px;
+        }
+
+        #tagline{
+            position: absolute;
+            top: 30px;
+            font-size: 50px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: lightseagreen;
+        }
+
+        #btn1{
+            margin-top: 5px;
+        }
+
+        #main2{
+            height: 100px;
+            width: 40%;
+            position: absolute;
+            top: 600px;
+            box-sizing: border-box;
+            font-size: 20px;
+            border-radius: 20px;
+            padding-top: 32px;
+            padding-left: 80px;
+            font-weight: 700;
+            background-color: lightseagreen;
+            display: none;
+        }
+        p{
+            float: left;
+            margin-right: 8px;
+        }
+
+        #btn2{
+            float: right;
+            margin: 30px;
+            position: absolute;
+            top: 4px;
+            right: 0px;
+        }
+
+        @media (max-width: 391px)
+        {
+            #tagline{
+               left: 60px;
+               margin-bottom: 0px;
+            }
+
+            #main{
+            height: 50vh;
+            width: 90%;
+            padding-left: 50px;
+            margin-top: -120px;
+        }
+
+        #main2{
+            width: 90%;
+            padding-top: 30px;
+            padding-left: 10px;
+        }
+
+        p{
+            float: left;
+            margin-right: 0px;
+        }
+
+        #btn2{
+            margin-top: 25px;
+            margin-right: 5px;
+        }
+        }
+    </style>
+<body>
+    <h1 id="tagline">FIND SALARY</h1>
+   <div id="main">
+    CHOOSE GENDER: <br>
+    <input type="radio" name="gender" value="Male" id="m">Male <br>
+    <input type="radio" name="gender" value="female" id="f">Female <br> 
+
+    <input type="text" placeholder="Year of service:" class="form-control" id="ys">
+
+    Choose department: <br>
+    <input type="radio" name="dept" value="A" id="deptA">Department A<br>
+    <input type="radio" name="dept" value="B" id="deptB">Department B<br>
+
+    Choose qualification: <br>
+    <input type="radio" name="course" value="ug" id="qualug">Under Graduate<br>
+    <input type="radio" name="course" value="pg" id="qualpg">Post Graduate<br>
+    <button  class="btn btn-primary" id="btn1" onclick="button()">Salary</button>
+    
+   </div>
+
+   <div id="main2">
+    <p>Total Salary:- </p>
+    <div id="salary"></div>
+    <button class="btn btn-success" id="btn2" onclick="payment()">Pay Salary</button>
+
+   </div>
+</body>
+
+    <script>
+        function button(){
+
+            document.getElementById("main2").style.display="block";
+
+            var male = document.getElementById("m")
+            var female = document.getElementById("f")
+            var years = document.getElementById("ys").value
+            var qual2 = document.getElementById("qualpg")
+            var qual1 = document.getElementById("qualug")
+            
+
+
+            if (male.checked==true && years>=10 && qual2.checked==true)
+            {
+                // var salary=15000;
+                document.getElementById("salary").innerHTML="Rs. 15,000" 
+            }
+
+            else if ((male.checked==true && years>=10 && qual1.checked==true) || (male.checked==true && years<10 && qual2.checked==true))
+            {
+                // var salary = 10000
+                document.getElementById("salary").innerHTML="Rs. 10,000" 
+                
+            }
+
+            else if (male.checked==true && years<10 && qual1.checked==true)
+            {
+                // var salary = 7000
+                document.getElementById("salary").innerHTML="Rs. 7,000" 
+            }
+
+            else if (female.checked==true && years>=10 && qual2.checked==true)
+            {
+                // var salary = 12000
+                document.getElementById("salary").innerHTML="Rs. 12,000" 
+            }
+            
+            else if (female.checked==true && years>=10 && qual1.checked==true)
+            {
+                // var salary = 9000
+                document.getElementById("salary").innerHTML="Rs. 9,000" 
+            }
+
+            else if (female.checked==true && years<10 && qual2.checked==true)
+            {
+                // var salary = 10000
+                document.getElementById("salary").innerHTML="Rs. 10,000" 
+            }
+
+            else if (female.checked==true && years<10 && qual1.checked==true)
+            {
+                // var salary = 6000
+                document.getElementById("salary").innerHTML="Rs. 6,000" 
+            }
+
+
+            if (male.checked==false && female.checked==false  && qual1.checked==false && qual2.checked==false)
+            {
+                alert("Please choose an option")
+                document.getElementById("main2").style.display="none";
+            }
+
+
+
+            // document.getElementById("salary").innerHTML="Rs. " + salary
+        }
+
+        function payment() 
+        {
+            alert("Salary Paid") 
+            document.getElementById("main2").style.display="none";
+
+            document.getElementById("ys").value="" 
+            document.getElementById("m").checked=false
+            document.getElementById("f").checked=false
+            document.getElementById("qualpg").checked=false
+            document.getElementById("qualug").checked=false
+            document.getElementById("deptA").checked=false
+            document.getElementById("deptB").checked=false
+        }
+    </script>
+
+</html>
